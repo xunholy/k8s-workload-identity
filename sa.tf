@@ -1,10 +1,10 @@
 # GKE Service Account
 resource "kubernetes_service_account" "gke-sa" {
   metadata {
-    name      = "gke-sa"
-    namespace = "workload-identity"
+    name      = "${var.k8s-service-account}"
+    namespace = "${var.k8s-namespace}"
     annotations = {
-      "iam.gke.io/gcp-service-account" = "${google_service_account.gcp-sa.account_id}@gke-terraform-cluster-demo.iam.gserviceaccount.com"
+      "iam.gke.io/gcp-service-account" = "${google_service_account.gcp-sa.account_id}@${var.project_id}.iam.gserviceaccount.com"
     }
   }
   secret {

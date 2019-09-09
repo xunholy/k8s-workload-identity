@@ -1,8 +1,8 @@
 resource "google_container_cluster" "primary" {
   provider           = "google-beta"
-  name               = "default-cluster"
+  name               = "${var.cluster_name}"
   network            = "default"
-  location           = "australia-southeast1"
+  location           = "${var.location}"
   initial_node_count = 1
 
   addons_config {
@@ -20,15 +20,8 @@ resource "google_container_cluster" "primary" {
   }
 
   workload_identity_config {
-    identity_namespace = "gke-terraform-cluster-demo.svc.id.goog"
+    identity_namespace = "${var.project_id}.svc.id.goog"
   }
 
   enable_binary_authorization = true
-}
-
-data "google_client_config" "default" {}
-
-data "google_container_cluster" "gke_cluster" {
-  name     = "${google_container_cluster.primary.name}"
-  location = "australia-southeast1"
 }

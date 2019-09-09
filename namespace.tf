@@ -4,6 +4,6 @@ resource "kubernetes_namespace" "workload-identity" {
     annotations = {
       name = "kubernetes_namespace.workload-identity.metadata.name"
     }
-    name = "workload-identity"
+    name = "${var.k8s-namespace}"
   }
 }

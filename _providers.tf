@@ -1,7 +1,12 @@
+provider "google" {
+  project = "${var.project_id}"
+  region  = "${var.region}"
+}
+
 provider "google-beta" {
   credentials = "${file("./creds/service-account.json")}"
-  project     = "gke-terraform-cluster-demo"
-  region      = "australia-southeast1"
+  project     = "${var.project_id}"
+  region      = "${var.region}"
 }
 
 provider "kubernetes" {
