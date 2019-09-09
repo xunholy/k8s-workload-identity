@@ -22,20 +22,8 @@ Note: Setting up the remote state should have been done as part of the Google do
 
 The following are some basic instructions to be able to create the terraform resources we've created in this project.
 
-1. Update the [backend.tf](backend.tf) file and ensure the `credentials` location matches where you have stored your terraform service account json file.
-2. Add the following environment variables based off the values used when creating your terraform service account, however substituting for the correct project.
-
-```bash
-export TF_VAR_project_name=gke-terraform-cluster-demo
-export TF_VAR_region=us-australia-southeast1
-export TF_ADMIN=gke-terraform-cluster-demo
-export TF_CREDS=<PATH/TO/FILE>service-account.json
-
-export GOOGLE_APPLICATION_CREDENTIALS=${TF_CREDS}
-export GOOGLE_PROJECT=${TF_VAR_project_name}
-```
-
-3. Apply the terraform IaC to your Google cloud project using the following command:
+1. Update the [_backend.tf](_backend.tf) and [_providers.tf](_providers.tf) files and ensure the `credentials` location matches where you have stored your terraform service account json file.
+2. Apply the terraform IaC to your Google cloud project using the following command:
 
 ```bash
 $ terraform apply -auto-approve
