@@ -29,7 +29,7 @@ The following are some basic instructions to be able to create the terraform res
 export TF_VAR_project_name=gke-terraform-cluster-demo
 export TF_VAR_region=us-australia-southeast1
 export TF_ADMIN=gke-terraform-cluster-demo
-export TF_CREDS=<service-account>.json
+export TF_CREDS=<PATH/TO/FILE>service-account.json
 
 export GOOGLE_APPLICATION_CREDENTIALS=${TF_CREDS}
 export GOOGLE_PROJECT=${TF_VAR_project_name}
@@ -38,7 +38,7 @@ export GOOGLE_PROJECT=${TF_VAR_project_name}
 3. Apply the terraform IaC to your Google cloud project using the following command:
 
 ```bash
-$ terraform apply
+$ terraform apply -auto-approve
 ```
 
 Note: You may wish to first see what resources will be created in your project before applying this IaC, this can be done using the following command:
@@ -47,15 +47,18 @@ Note: You may wish to first see what resources will be created in your project b
 $ terraform plan
 ```
 
-4. If the GKE resource specific things failed to created, you will need to authicate to your newly created GKE cluster. Once you've authenticated, re-run step 3.
-
-```bash
-$ gcloud container clusters get-credentials default-cluster
-```
+**Congratulations!** you have successfully started a Kubernetes cluster with workload identity working.
 
 ## Test
 
 This will confirm that our GCP and GKE service accounts have been bound correctly and our GKE service account can indeed use IAM permissions bound to the GCP service account.
+
+Firstly, you will need to authenticate your kubectl command, this can be done using the following commands:
+
+```bash
+$ gcloud auth login
+$ gcloud container clusters get-credentials default-cluster
+```
 
 Run the following command in your termimal:
 

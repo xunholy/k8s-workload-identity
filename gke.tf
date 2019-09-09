@@ -25,3 +25,10 @@ resource "google_container_cluster" "primary" {
 
   enable_binary_authorization = true
 }
+
+data "google_client_config" "default" {}
+
+data "google_container_cluster" "gke_cluster" {
+  name     = "${google_container_cluster.primary.name}"
+  location = "australia-southeast1"
+}
