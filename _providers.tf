@@ -1,6 +1,7 @@
 provider "google" {
-  project = "${var.project_id}"
-  region  = "${var.region}"
+  credentials = "${file("./creds/service-account.json")}"
+  project     = "${var.project_id}"
+  region      = "${var.region}"
 }
 
 provider "google-beta" {

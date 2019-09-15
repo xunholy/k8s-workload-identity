@@ -10,6 +10,12 @@ Workload identity is a way to securely provide access to Google cloud services w
 
 This is accomplished by creating a Google cloud service account, then granting the roles and/or permissions required. Now you create a Kubernetes service account and you add the annotation to the service account referencing the GCP service account which has the required roles and/or permissions to be able to access the Google cloud services within your cluster.
 
+## Example Architecture
+
+The following diagrams will demonstrate workload identity and how it binds a GCP service account with Pub/Sub permissions to a GKE service account allowing the pod running your application to have the correct GCP permissions outside your Kubernetes cluster to access Pub/Sub correctly.
+
+<img src="./docs/images/architecture-pubsub.png"/>
+
 ## Setup
 
 In this repository there are several key things that must be mentioned.
